@@ -48,9 +48,9 @@ class _RegisterPageState extends State<TestPage> {
                   _correo(),
                   _password(),
                   _codigoVerificacion(),
-                  SizedBox(height: 45.0),
+                  SizedBox(height: 10.0),
                   _guardar(),
-                  SizedBox(height: 45.0),
+                  SizedBox(height: 20.0),
                   _footer(context),
                 ],
               ),
@@ -63,7 +63,7 @@ class _RegisterPageState extends State<TestPage> {
 Widget _logo() {
   return Center(
     child: Container(
-      width: 400,
+      width: 280,
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: <Widget>[
@@ -79,15 +79,25 @@ Widget _logo() {
 Widget _correo() {
   TextEditingController email = TextEditingController();
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 25.0),
-    margin: EdgeInsets.only(top: 30.0),
+    padding: EdgeInsets.only(top: 5, left: 5, bottom: 5, right: 20),
+    margin: EdgeInsets.only(top: 30.0, left: 30.0, right: 30.0),
+    decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              offset: Offset(0, 5),
+              blurRadius: 5)
+        ]),
     child: TextField(
         autocorrect: false,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-            icon: Icon(Icons.email_outlined, color: Colors.blueAccent),
-            hintText: 'Ejemplo@gmail.com',
-            labelText: 'Correo Electronico'),
+            border: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            prefixIcon: Icon(Icons.email_outlined, color: Colors.blueAccent),
+            labelText: 'Correo'),
         controller: email),
   );
 }
@@ -95,13 +105,24 @@ Widget _correo() {
 Widget _password() {
   TextEditingController password = TextEditingController();
   return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25.0),
-      margin: EdgeInsets.only(top: 20.0),
+      padding: EdgeInsets.only(top: 10.0, left: 5, bottom: 5, right: 20),
+      margin: EdgeInsets.only(top: 10.0, left: 30.0, right: 30.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                offset: Offset(0, 5),
+                blurRadius: 5)
+          ]),
       child: TextField(
         autocorrect: false,
         obscureText: true,
         decoration: InputDecoration(
-          icon: Icon(Icons.lock_outline, color: Colors.blueAccent),
+          border: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          prefixIcon: Icon(Icons.lock_outline, color: Colors.blueAccent),
           labelText: 'Contraseña',
         ),
         controller: password,
@@ -110,12 +131,23 @@ Widget _password() {
 
 Widget _codigoVerificacion() {
   return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25.0),
-      margin: EdgeInsets.only(top: 20.0),
+      padding: EdgeInsets.only(top: 10.0, left: 5, bottom: 5, right: 20),
+      margin: EdgeInsets.only(top: 10.0, left: 30.0, right: 30.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                offset: Offset(0, 5),
+                blurRadius: 5)
+          ]),
       child: TextField(
         autocorrect: false,
         decoration: InputDecoration(
-          icon: Icon(Icons.verified, color: Colors.blueAccent),
+          border: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          prefixIcon: Icon(Icons.verified, color: Colors.blueAccent),
           labelText: 'Codigo de verificacion',
         ),
       ));
@@ -153,7 +185,7 @@ Widget _guardar() {
       ),
       style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
+            borderRadius: BorderRadius.circular(30.0),
           ),
           elevation: 0.0,
           primary: Colors.blue.shade800));
