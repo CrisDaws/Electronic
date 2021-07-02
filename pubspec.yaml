@@ -31,6 +31,7 @@ dependencies:
   google_fonts: ^2.1.0
   http: ^0.13.3
   fluttertoast: ^8.0.7
+  font_awesome_flutter: ^9.1.0
 
 dev_dependencies:
   flutter_test:
