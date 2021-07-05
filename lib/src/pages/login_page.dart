@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -30,14 +29,16 @@ class _LoginPageState extends State<LoginPage> {
         msg = "Login Fallido, Intente de nuevo";
         print(msg);
         limpiarData();
-        showToast();
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Creedenciales Incorrectas, Intente de nuevo', textAlign: TextAlign.center),
+        ));
       });
     } else {
       print("Login Exitoso");
       print(data);
        Navigator.pushReplacementNamed(context, 'dash');
        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text("Intente de nuevo"),
+      content: Text("Login Exitoso" , textAlign: TextAlign.center),
     ));
     }
 
@@ -187,15 +188,14 @@ class _LoginPageState extends State<LoginPage> {
    email.clear();
    password.clear();
  }
-
-  void showToast() {  
-    Fluttertoast.showToast(  
-        msg: 'Login Fallido, Intente de Nuevo',
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 3,
-          backgroundColor: Colors.red,
-          textColor: Colors.white
-    );  
-  }
+  // void showToast() {  
+  //   Fluttertoast.showToast(  
+  //       msg: 'Login Fallido, Intente de Nuevo',
+  //         toastLength: Toast.LENGTH_LONG,
+  //         gravity: ToastGravity.CENTER,
+  //         timeInSecForIosWeb: 3,
+  //         backgroundColor: Colors.red,
+  //         textColor: Colors.white
+  //   );  
+  // }
 }

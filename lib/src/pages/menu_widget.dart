@@ -33,7 +33,7 @@ class MenuPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Dispositivos'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {Navigator.pushReplacementNamed(context, 'devices')},
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),

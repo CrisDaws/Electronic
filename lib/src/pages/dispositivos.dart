@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 class DispositivosPage extends StatefulWidget {
   const DispositivosPage({ Key? key }) : super(key: key);
 
@@ -8,12 +10,68 @@ class DispositivosPage extends StatefulWidget {
 }
 
 class _DispositivosPageState extends State<DispositivosPage> {
+  
+
+  late TextEditingController alias, serie;
+
+    @override
+  void initState() {
+    super.initState();
+    alias = new TextEditingController();
+    serie = new TextEditingController();
+    fetchPosts();
+  }
+
+  Future addDevice() async {
+    var url = Uri.parse("http://localhost/estadia/registro_dispositivo.php");
+    var data = { "devices_alias": alias.text, "devices_serie": serie.text };
+    var res = await http.post(url, body: data);
+
+    print(res);
+
+    if(res.body == "Error") {
+      Text("Algo salio mal", style: TextStyle(fontSize: 25, color: Colors.red));
+    } else {
+      Text('Dispositivo Agregado Correctamente',
+      style: TextStyle(fontSize: 25, color: Colors.green),);
+    }
+  }
+
+
+  void fetchPosts() async {
+
+    final url = "http://localhost/estadia/getData.php";
+    var _postJson = [];
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      final jsonData = jsonDecode(response.body) as List;
+      setState(() {
+        _postJson = jsonData;
+      });
+    } catch (err) {}
+  }
+
+  
+//  Future<List> getData() async {
+//    var url = Uri.parse("http://localhost/estadia/getData.php");
+//   final response = await http.get(url);
+//   return json.decode(response.body);
+//   }
+  
+
+
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
        backgroundColor: Color.fromRGBO(56, 98, 124, 1),
       appBar: AppBar(
         title: Text('Dispositivos'),
+        leading: IconButton(onPressed: (){ Navigator.pushReplacementNamed(context, 'dash'); }, icon: Icon(Icons.arrow_back_sharp)),
+        actions: [
+          
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -43,6 +101,7 @@ class _DispositivosPageState extends State<DispositivosPage> {
             prefixIcon: Icon(Icons.arrow_forward_sharp, color: Colors.blueAccent),
             labelText: 'Numero de Serie'
           ),
+          controller: serie
         )
               ),
               Container(
@@ -67,42 +126,69 @@ class _DispositivosPageState extends State<DispositivosPage> {
             prefixIcon: Icon(Icons.arrow_forward_sharp, color: Colors.blueAccent),
             labelText: 'Alias Dispositivo'
           ),
+          controller: alias,
         )
               ),
+              SizedBox(height: 20.0),
+              ElevatedButton(
+                        onPressed: () {
+                          addDevice();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 70.0, vertical: 15.0),
+                          child: Text('Agregar Dispositivo'),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            elevation: 0.0,
+                            primary: Colors.blue)),
               Center(
                 
               ),
-              DataTable(
-                columns: [
-                  DataColumn(label: Text(
-                    'Alias',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  )),
-                  DataColumn(label: Text(
-                    'No. Serie',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  )),
-                  DataColumn(label: Text(
-                    'Editar',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  )),
+              
+              
+              
+              // DataTable(
+              //   columns: [
+              //     DataColumn(label: Text(
+              //       'Alias',
+              //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              //     )),
+              //     DataColumn(label: Text(
+              //       'No. Serie',
+              //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              //     )),
+              //     DataColumn(label: Text(
+              //       'Editar',
+              //       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              //     )),
                   
-                ],
-                rows: [
-                  DataRow(cells: [
-                    DataCell(Text('Focos Sala')),
-                    DataCell(Text('283020339302')),  
-                    DataCell(
-                      TextButton(onPressed: (){},child: Icon(Icons.edit)),
-                    ), 
+              //   ],
+              //   rows: [
+              //     DataRow(cells: [
+              //       DataCell(Text('Focos Sala')),
+              //       DataCell(Text('283020339302')),  
+              //       DataCell(
+              //         TextButton(onPressed: (){}
+              //         ,child: Icon(Icons.edit)),
+              //       ), 
                      
-                  ])
-                ],
-              )
+              //     ])
+              //   ],
+              // )
             ],
+            
           )
         ),
       ),
+      
     );
+    
   }
+  
+
+ 
 }
