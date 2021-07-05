@@ -27,12 +27,12 @@ class MenuPage extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.verified_user),
-            title: Text('Dashbord'),
-            onTap: () => {Navigator.of(context).pop()},
+            title: Text('Mis Dispositivos'),
+            onTap: () => {Navigator.pushReplacementNamed(context, 'listar')},
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Dispositivos'),
+            title: Text('Agregar Dispositivo'),
             onTap: () => {Navigator.pushReplacementNamed(context, 'devices')},
           ),
           ListTile(

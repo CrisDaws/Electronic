@@ -37,7 +37,9 @@ class _ListarPageState extends State<ListarPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: Text("Mis dispositivos"),),
+        
+        appBar: AppBar(title: Text("Mis dispositivos"),
+        leading: IconButton(onPressed: (){ Navigator.pushReplacementNamed(context, 'devices'); }, icon: Icon(Icons.arrow_back_sharp)),),
         body: ListView.builder(
           itemCount: _postJson.length,
           itemBuilder: (context, i) {
