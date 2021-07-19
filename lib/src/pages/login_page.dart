@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   String msg='';
 
   Future login(BuildContext context) async {
-    var url = Uri.parse('http://localhost/estadia/login.php');
+    var url = Uri.parse('https://ioteacenter.ga/login.php');
     var response = await http.post(url, body: {
       "users_email": email.text,
       "users_password": password.text
@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
         print(msg);
         limpiarData();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Creedenciales Incorrectas, Intente de nuevo', textAlign: TextAlign.center),
+          content: Text('Creedenciales Incorrectas, Intente de nuevo', textAlign: TextAlign.center), 
         ));
       });
     } else {
@@ -38,10 +38,9 @@ class _LoginPageState extends State<LoginPage> {
       print(data);
        Navigator.pushReplacementNamed(context, 'dash');
        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text("Login Exitoso" , textAlign: TextAlign.center),
+      content: Text("Login Exitoso" , textAlign: TextAlign.center), duration: Duration(seconds: 2),
     ));
     }
-
   }
 
   @override
@@ -133,15 +132,11 @@ class _LoginPageState extends State<LoginPage> {
                             labelText: 'Contraseña',
                           ),
                           controller: password,
-                        )),
+                        )
+                      ),
                     SizedBox(height: 10.0),
                     ElevatedButton(
-                        onPressed: () {
-                         login(context);
-                        //  Navigator.pop(context);
-                          // register();
-                          // Navigator.pushReplacementNamed(context, 'dash');
-                        },
+                        onPressed: () {login(context);},
                         child: Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 70.0, vertical: 15.0),
@@ -164,38 +159,29 @@ class _LoginPageState extends State<LoginPage> {
                                   fontWeight: FontWeight.w300)),
                           SizedBox(height: 10),
                           GestureDetector(
-                            child: Text('Ingresa Ahora',
+                            child: Text('Crear Cuenta',
                                 style: TextStyle(
                                     color: Colors.blue[600],
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold)),
                             onTap: () {
-                              Navigator.pushReplacementNamed(context, 'test');
-                            },
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                              Navigator.pushReplacementNamed(context, 'register');
+                          },
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
           ),
-        ));
+        ),
+      )
+    );
   }
 
  void limpiarData() {
    email.clear();
    password.clear();
  }
-  // void showToast() {  
-  //   Fluttertoast.showToast(  
-  //       msg: 'Login Fallido, Intente de Nuevo',
-  //         toastLength: Toast.LENGTH_LONG,
-  //         gravity: ToastGravity.CENTER,
-  //         timeInSecForIosWeb: 3,
-  //         backgroundColor: Colors.red,
-  //         textColor: Colors.white
-  //   );  
-  // }
 }

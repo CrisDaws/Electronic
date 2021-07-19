@@ -104,8 +104,9 @@ Card miCard() {
             trailing: CupertinoSwitch(
               value: _lights,
               onChanged: (bool value) {},
-            ),
-          )
-        ],
-      ));
+          ),
+        )
+      ],
+    )
+  );
 }

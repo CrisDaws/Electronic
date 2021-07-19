@@ -38,7 +38,7 @@ class MenuPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Cerrar Sesion'),
-            onTap: () => {Navigator.pushReplacementNamed(context, 'test')},
+            onTap: () => {Navigator.pushReplacementNamed(context, 'register')},
           ),
         ],
       ),

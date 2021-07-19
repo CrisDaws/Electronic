@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'EAC',
-      initialRoute: 'listar',
+      initialRoute: 'login',
       routes: routes,
     );
   }
