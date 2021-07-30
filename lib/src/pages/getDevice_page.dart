@@ -12,7 +12,7 @@ class ListarPage extends StatefulWidget {
 
 class _ListarPageState extends State<ListarPage> {
 
-  final url = "https://ioteacenter.ga/getData.php";
+  final url = "https://ioteacenter.ga/getdata.php";
 
   var _postJson = [];
 

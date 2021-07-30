@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:local_auth/local_auth.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
 
@@ -10,9 +12,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  
   final _formKey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+
+ 
 
   String msg='';
 
@@ -148,7 +153,9 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             elevation: 0.0,
                             primary: Colors.blue.shade800)),
+                           
                     SizedBox(height: 20.0),
+                    
                     Container(
                       child: Column(
                         children: <Widget>[
@@ -184,4 +191,5 @@ class _LoginPageState extends State<LoginPage> {
    email.clear();
    password.clear();
  }
+ 
 }

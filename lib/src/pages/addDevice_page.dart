@@ -62,7 +62,7 @@ class _DispositivosPageState extends State<DispositivosPage> {
     return Scaffold(
        backgroundColor: Color(0xffF2F2F2),
       appBar: AppBar(
-        title: Text('Dispositivos'),
+        title: Text('Dispositivos',),
         leading: IconButton(onPressed: (){ Navigator.pushReplacementNamed(context, 'dash'); }, icon: Icon(Icons.arrow_back_sharp)),
         actions: [
           
@@ -102,7 +102,8 @@ class _DispositivosPageState extends State<DispositivosPage> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
-                prefixIcon: Icon(Icons.arrow_forward_sharp, color: Colors.blueAccent),
+                prefixIcon: Icon(Icons.
+                app_registration_rounded, size: 30.0, color: Colors.blueAccent),
                 labelText: 'Numero de Serie'
               ),
               controller: serie
@@ -133,7 +134,7 @@ class _DispositivosPageState extends State<DispositivosPage> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
-                prefixIcon: Icon(Icons.arrow_forward_sharp, color: Colors.blueAccent),
+                prefixIcon: Icon(Icons.ad_units_outlined, size: 30.0, color: Colors.blueAccent),
                 labelText: 'Alias Dispositivo'
               ),
               controller: alias,
