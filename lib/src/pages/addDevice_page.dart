@@ -143,11 +143,8 @@ class _DispositivosPageState extends State<DispositivosPage> {
                   SizedBox(height: 20.0),
                   ElevatedButton(
                             onPressed: () {
-                              if(_formKey.currentState!.validate()){
                                 addDevice();
                                 limpiarData();
-                              }
-    
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(
